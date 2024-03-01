@@ -1,0 +1,31 @@
+This file contains details of all the tests conducted.
+################test1.py###############
+High res. simulation
+ran from balanced initial conditions with peturbation in temp field
+Dt = 0.005
+Printed results every 5 days (as pvd files). Also saved the vel and temp fields in .h5 files
+Saved kinetic energy at time step (4 min)
+Ran the code on 32 cores. It took 35 hours to complete the run.
+Observations: The kinetic energy stabilized after droping in the initial days. (see kinetic energy plot
+in ../64x448/kinetic_energy_plots.ipynb)
+
+#######loading_fields_written_on_mulitple_cores_on_one_core.py#####
+I could open the .h5 which was created on mulitple cores on a single core.
+This was not possible before. 
+I opened the .h5 file and saved the vel, temp and vort fields in a .pvd file
+for visualization.
+
+########loading_h5_file_averaging_fields_then_coarse_graining.py#####
+This script loads a h5 file, does averaging of the fields and then 
+project the solution on a coarse grid. I saved the coarse grained solution
+as a pvd file and also as a .h5 file so that i can run the coarse grained
+solution on coarse grid.
+
+#################test2.py################
+1. Used the above script to open the h5 file at t=27.0 (15 days)
+2. Did coarse graining (i did this differently this time in comparison to the stochastic Navier-stokes coarse.
+Due to periodic boundary condtions, when i created mesh hierarchies the new meshes have 3 coordinates (don't know why)
+therefore i used a different approach this time. I didn't use inject function like last time. 
+The results show that this script works (at leas for now since i didn't see any problems in the results))
+3. Printed the coarse grained fields as pvd file
+4. Saved the coarse grained solution as .h5 file.

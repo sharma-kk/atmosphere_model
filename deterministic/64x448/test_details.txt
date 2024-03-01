@@ -1,0 +1,15 @@
+############test0.py###########
+Dt = 0.02
+Re = Pe = 3*10**5
+Constant Coriolis parameter
+Ran for 30 days (2700 time steps)
+Ran on 2 cores
+
+############test3.py###########
+Loaded coarse grained velocity and temp. from high res. simulation at t = 27.0 (15 days)
+and ran on a coarse grid
+Dt = 0.02
+Re = Pe = 3*10**5
+Constant Coriolis parameter
+Ran until 30 days
+Saved kinetic energy data
