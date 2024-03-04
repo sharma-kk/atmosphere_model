@@ -1,0 +1,7 @@
+###########test6.py###########
+Ran on 8 cores
+Coarse grained fields at t=27 are taken (c = 1/128)
+Dt = 0.01
+Ran the code until 30 days, saved results every day
+Observations: Inital impressions: there is still noise in the results although 
+less than 64 grid case.
