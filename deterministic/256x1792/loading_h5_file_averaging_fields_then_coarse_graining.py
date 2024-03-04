@@ -45,8 +45,10 @@ l_vel = inner(u_, u_test) * dx
 a_temp = (c_sqr * inner(grad(theta_trial), grad(theta_test)) + theta_trial*theta_test) * dx
 l_temp = theta_*theta_test* dx
 
+bound_cond = [DirichletBC(V1f.sub(1), Constant(0.0), (1,2))] # making sure that n.v is zero after coarse graining
+
 # step 1: spatial averaging using Helmholtz operator
-solve(a_vel==l_vel, u_avg)
+solve(a_vel==l_vel, u_avg, bcs = bound_cond)
 solve(a_temp==l_temp, theta_avg)
 
 print("solved the PDEs (alpha-regularization)",
@@ -104,12 +106,14 @@ outfile2.write(uc, thetac, vortc)
 print("saving coarse grained solution into a .h5 file.....",
     time.strftime("%H:%M:%S", time.localtime()))
 
-h5_file = "./h5_files/coarse_grained_vel_temp_at_t=27.0_mesh_64_c_1_by_64.h5"
+# uncomment to save results into .h5 file
 
-with CheckpointFile(h5_file, 'w') as afile:
-    afile.save_mesh(c_mesh)
-    afile.save_function(uc)
-    afile.save_function(thetac)
+# h5_file = "./h5_files/coarse_grained_vel_temp_at_t=27.0_mesh_64_c_1_by_64.h5"
+
+# with CheckpointFile(h5_file, 'w') as afile:
+#     afile.save_mesh(c_mesh)
+#     afile.save_function(uc)
+#     afile.save_function(thetac)
 
 print("Simulation completed !",
     time.strftime("%H:%M:%S", time.localtime()))

@@ -43,8 +43,10 @@ l_vel = inner(u_, u_test) * dx
 a_temp = (c_sqr * inner(grad(theta_trial), grad(theta_test)) + theta_trial*theta_test) * dx
 l_temp = theta_*theta_test* dx
 
+bound_cond = [DirichletBC(V1f.sub(1), Constant(0.0), (1,2))] # making sure that n.v is zero after coarse graining
+
 # step 1: spatial averaging using Helmholtz operator
-solve(a_vel==l_vel, u_avg)
+solve(a_vel==l_vel, u_avg, bcs = bound_cond)
 solve(a_temp==l_temp, theta_avg)
 
 print("solved the PDEs (alpha-regularization)",

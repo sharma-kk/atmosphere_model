@@ -11,7 +11,7 @@ import time
 print("loading high resolution mesh, velocity and temp......",
     "current time:",time.strftime("%H:%M:%S", time.localtime()))
 
-with CheckpointFile("./h5_files/grid_256_fields_at_time_t=27.0.h5", 'r') as afile:
+with CheckpointFile("./h5_files/grid_256_fields_at_time_t=36.0.h5", 'r') as afile:
     mesh = afile.load_mesh("mesh_256")
     u_ = afile.load_function(mesh, "velocity") 
     theta_ = afile.load_function(mesh, "temperature")

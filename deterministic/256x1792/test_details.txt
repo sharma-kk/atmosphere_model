@@ -20,6 +20,7 @@ This script loads a h5 file, does averaging of the fields and then
 project the solution on a coarse grid. I saved the coarse grained solution
 as a pvd file and also as a .h5 file so that i can run the coarse grained
 solution on coarse grid.
+I made a change: provided free slip bcs while averaging.
 
 #################test2.py################
 1. Used the above script to open the h5 file at t=27.0 (15 days)
@@ -29,3 +30,31 @@ therefore i used a different approach this time. I didn't use inject function li
 The results show that this script works (at leas for now since i didn't see any problems in the results))
 3. Printed the coarse grained fields as pvd file
 4. Saved the coarse grained solution as .h5 file.
+I made a change: provided free slip bcs while averaging.
+
+################test4.py##################
+Ran the high res. model from t = 15 d onwards and saved fields in .h5 files every 8 hours
+
+#############test5.py##############
+loading the .h5 files, coarse graining, calculating (u - u_avg)Dt, 
+recording them and also recording the truth values for vel, temp and vort
+saved the data into .npz files
+Provided free slip bc while coarse graining. Didn't do that on the first run.
+I observed that the y component of xi was not equal to zero in the top and bottom boundary.
+There I made this change and ran the test again.
+for one .h5 file it takes 5 minutes to do this. 
+
+#############calculation_of_xi_c_1_by_64_my_version.ipynb##############
+We load the .npz files which contain (u - u_cg)Dt and do the SVD decomposition
+I tried different methods to calculate the xi's. I am not sure which one is correct
+the my_version.ipynb file takes the values from SVD without any modification and
+calculate xi. I have named the other methods of estimating xi by sagy and wei respectively.
+The calculated xi are stored in the folder ./xi_vec_data.
+I have saved 44 EOFs which explains 99 % of the variance. 
+
+#############xi_visualization_my_method.ipynb##############
+We plot all the calculated xi's.
+Observations: The first xi contains large scales and the last xi contains small scales (at least for zonal veclocity)
+
+
+
